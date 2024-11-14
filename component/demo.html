@@ -1,36 +1,27 @@
-// import { userAddress,userEmail,userJob,userLanguage,userName,userNum,userPicture,userPortfolio,userProfile,schoolName ,schoolPeriod,collegeName,collegePeriod,universityName,universityPeriod,universitySub,lastCompany,lastJob,periodCompany,workExperience,userSkill} from "./app.js";
-let resumeParent = document.querySelector(".resume-section");
-//Download Resume Button
-let downloadResumeBtn = document.querySelector(".downladPdf");
-//Generate Url For Resume Button
-let generateResumeUrl = document.querySelector(".generate-url");
-// month list
-const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-//Show the Resume
-(() => {
-    //get Resume Data from Local Storage
-    let getResumeFromLocl = localStorage.getItem("Resume-Data");
-    //convert into an Object
-    let strtoObj = JSON.parse(getResumeFromLocl);
-    console.log(strtoObj);
-    // Convert birthDate from string to Date
-    if (strtoObj.birthDate) {
-        strtoObj.birthDate = new Date(strtoObj.birthDate); // Convert back to Date
-    }
-    if (!strtoObj) {
-        resumeParent.innerHTML = `<section class="data-not-found">
-                <h1>DATA - NOT - AVAILABLE</h1>
-            </section>`;
-    }
-    else {
-        resumeParent.innerHTML = `<section class="resume">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Demo</title>
+    <link rel="stylesheet" href="../styles/resume.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anton+SC&family=Cherry+Bomb+One&family=New+Amsterdam&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <main>
+        <section class="resume-section">
+            <section class="resume">
             <div class="resume-head">
                 <div class="profile-img">
-                    <img src=${strtoObj.img} alt="profile-photo">
+                    <img src="../images/download.jpg" alt="">
                 </div>
                 <div class="name-jobtitle">
-                    <h1>${strtoObj.name}</h1>
-                    <h2>${strtoObj.jobTitle}</h2>
+                    <h1>Shaikh Abdul Moiz</h1>
+                    <h2>Front - End - Developer</h2>
                 </div>
             </div>
             <div class="resume-body">
@@ -41,21 +32,19 @@ const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Se
 
                             <div class="pers-box">
                                 <h4>Name</h4>
-                                <p>${strtoObj.name}</p>
+                                <p>Shaikh Abdul Moiz</p>
                             </div>
                             <div class="pers-box">
                                 <h4>Birthday</h4>
-                               <p>${strtoObj.birthDate
-            ? `${strtoObj.birthDate.getDate()} ${monthList[strtoObj.birthDate.getMonth()]} ${strtoObj.birthDate.getFullYear()}`
-            : "N/A"}</p>
+                                <p>4 <sup>th</sup> December 2004</p>
                             </div>
                             <div class="pers-box">
                                 <h4>Nationality</h4>
-                                <p>${strtoObj.nationality}</p>
+                                <p>Pakistani</p>
                             </div>
                             <div class="pers-box">
                                 <h4>Portfolio</h4>
-                                <p class="port">${strtoObj.portfolio}</p>
+                                <p>https://portfolio-blush-gamma-80.vercel.app/</p>
                             </div>
                         </div>
                     </div>
@@ -65,22 +54,27 @@ const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Se
 
                             <div class="contct-box">
                                 <h4>Email</h4>
-                                <p>${strtoObj.email}</p>
+                                <p>abc@gmail.com</p>
                             </div>
                             <div class="contct-box">
                                 <h4>Number</h4>
-                                <p>${strtoObj.number}</p>
+                                <p>12345678901</p>
                             </div>
                             <div class="contct-box">
                                 <h4>Address</h4>
-                                <p>${strtoObj.address}</p>
+                                <p>Karachi Pakistan</p>
                             </div>
                         </div>
                     </div>
                     <div class="skills">
                         <h3>SKILLS</h3>
                         <ul class="skill-list">
-                        ${strtoObj.skill.map(e => `<li>${e}</li>`).join('')}
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JAVASCRIPT</li>
+                            <li>TYPESCRIPT</li>
+                            <li>TAILWIND CSS</li>
+                            <li>NEXT JS</li>
                         </ul>
                     </div>
                 </div>
@@ -88,7 +82,7 @@ const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Se
                 <div class="resume-right">
                     <div class="profile">
                         <h3>PROFILE</h3>
-                        <p>${strtoObj.profile}
+                        <p>I am a Product Designer and Frontend Developer, I fully understand the process of design and development of a digital product, my job is to make a product usable and visually appealing, through the Design Thinking methodology I manage to create products that are endearing to users.
                         </p>
                     </div>
                     <div class="experience">
@@ -97,11 +91,11 @@ const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Se
                         <div class="work-box">
                             <div class="work-img">
                                 <img src="../images/Vector (2).png" alt="">
-                                <p>${strtoObj.periodCompany}</p>
+                                <p>2025-2025</p>
                             </div>
                             <div class="company-job">
-                                <h4>${strtoObj.lastJob}</h4>
-                                <p>${strtoObj.lastCompany}</p>
+                                <h4>FRONT END DEVELOPER</h4>
+                                <p>GOOGLE USa</p>
                             </div>
                         </div>
                        </div>
@@ -112,31 +106,31 @@ const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Se
                         <div class="education-box">
                             <div class="education-img">
                                 <img src="../images/Vector (2).png" alt="">
-                                <p>${strtoObj.schoolPeriod}</p>
+                                <p>2019-2021</p>
                             </div>
                             <div class="school-college">
-                                <h4>${strtoObj.schoolSub}</h4>
-                                <p>${strtoObj.schoolName}</p>
+                                <h4>COMPUTER SCIENce</h4>
+                                <p>CMS GOVT HIGHER SECONDARY CAMPUS SCHOOL</p>
                             </div>
                         </div>
                         <div class="education-box">
                             <div class="education-img">
                                 <img src="../images/Vector (2).png" alt="">
-                                <p>${strtoObj.collegePeriod}</p>
+                                <p>2021-2024</p>
                             </div>
                             <div class="school-college">
-                                <h4>${strtoObj.collegeSub}</h4>
-                                <p>${strtoObj.collegeName}</p>
+                                <h4>COMPUTER SCIENCE</h4>
+                                <p>S M GOVT SCIENCE COLLEGE</p>
                             </div>
                         </div>
                         <div class="education-box">
                             <div class="education-img">
                                 <img src="../images/Vector (2).png" alt="">
-                                <p>${strtoObj.universityPeriod}</p>
+                                <p>2024-2028</p>
                             </div>
                             <div class="school-college">
-                                <h4>${strtoObj.universitySub}</h4>
-                                <p>${strtoObj.university}</p>
+                                <h4>BSC IN COMPUTER SCIENCE</h4>
+                                <p>HARVARD UNIVERSITY</p>
                             </div>
                         </div>
                        </div>
@@ -144,13 +138,16 @@ const monthList = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Se
                     <div class="language">
                         <h3>LANGUAGE</h3>
                         <ul class="language-list">
-                        ${strtoObj.language.map(e => `<li>${e}</li>`).join('')}
+                            <li>ENGLISH</li>
+                            <li>URDU</li>
                         </ul>
                     </div>
                 </div>
 
             </div>
-            </section>`;
-    }
-})();
-export {};
+            </section>
+
+        </section>
+    </main>
+</body>
+</html>
